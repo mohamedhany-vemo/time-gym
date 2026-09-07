@@ -165,8 +165,8 @@ footer strong{color:#fff}
       <select id="plan"><option>Monthly Membership — EGP 650</option></select>
       <button class="cta" type="submit">Submit Membership Request</button>
     </form>
-    <div class="success" id="success">Your membership request has been received. Payment can be connected later.</div>
-    <p class="form-note">Online payment is intentionally not connected yet. The form is ready to be linked to a payment gateway later.</p>
+    <div class="success" id="success" style="display:none">Your membership request has been received.</div>
+    <p class="form-note">بعد الضغط على إرسال طلب الاشتراك، سيتم فتح نموذج Google لتسجيل بياناتك.</p>
   </div>
 </section>
 
@@ -186,8 +186,7 @@ footer strong{color:#fff}
 <script>
 document.getElementById("joinForm").addEventListener("submit", function(e){
   e.preventDefault();
-  document.getElementById("success").style.display="block";
-  this.reset();
+  window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdAJHYXMjXXOAu1iTCuOdRDcO16nLVllOYiPuJ8hmyKUPI6dg/viewform?usp=publish-editor";
 });
 </script>
 <script>
@@ -199,7 +198,7 @@ document.getElementById("joinForm").addEventListener("submit", function(e){
  'Great Environment':'بيئة رائعة','Clean, powerful and motivating atmosphere.':'أجواء نظيفة وقوية ومحفزة.','Cardio Area':'منطقة الكارديو','Everything you need for your conditioning.':'كل ما تحتاجه لرفع لياقتك البدنية.',
  'Supportive Community':'مجتمع داعم','Train with people who push you forward.':'تمرّن مع أشخاص يشجعونك على التقدم.','Take A Look Inside':'شاهد الجيم من الداخل',
  'Monthly Plan':'الباقة الشهرية','Monthly Membership':'الاشتراك الشهري','Subscribe From The Website':'اشترك من خلال الموقع',
- 'Submit Membership Request':'إرسال طلب الاشتراك','Online payment is intentionally not connected yet. The form is ready to be linked to a payment gateway later.':'الدفع الإلكتروني غير متصل حاليًا. النموذج جاهز للربط ببوابة دفع لاحقًا.',
+ 'Submit Membership Request':'إرسال طلب الاشتراك','بعد الضغط على إرسال طلب الاشتراك، سيتم فتح نموذج Google لتسجيل بياناتك.':'الدفع الإلكتروني غير متصل حاليًا. النموذج جاهز للربط ببوابة دفع لاحقًا.',
  'The Biggest Gym in Giza':'أكبر جيم في الجيزة','Al Ashreen Branch, Faisal':'فرع العشرين، فيصل','By Mohamed Hany':'بواسطة محمد هاني','Full Name':'الاسم بالكامل','Phone Number':'رقم الموبايل','Monthly Membership — EGP 650':'الاشتراك الشهري — 650 جنيه','EGP 650 / month':'650 جنيه / شهر'
  };
  const rev=Object.fromEntries(Object.entries(dict).map(([e,a])=>[a,e]));
