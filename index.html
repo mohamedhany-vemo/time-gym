@@ -81,6 +81,7 @@ footer strong{color:#fff}
 }
 </style>
 
+<style id="bilingual-gym-update">.gym-footer-credit{text-align:center;margin-top:18px;line-height:1.9}.gym-footer-credit .tagline{font-size:1.15em;font-weight:800}.gym-footer-credit .branch{font-size:.95em}.gym-footer-credit .en{display:block;margin-top:2px;font-size:.82em;opacity:.72;direction:ltr}</style>
 </head>
 <body>
 
@@ -172,13 +173,14 @@ footer strong{color:#fff}
 <footer>
   <div>TIME <strong>GYM</strong> • FITNESS CENTER</div>
   <div style="margin-top:10px">© 2026 TIME GYM. All rights reserved.</div>
-  <div style="margin-top:10px;color:#aaa">Made by <strong>Mohamed Hany</strong></div>
-
-<section class="gym-tagline" aria-label="Gym tagline">
-  <div>أكبر جيم في الجيزة</div>
-  <span>فرع العشرين فيصل</span>
-</section>
-
+  <div class="gym-footer-credit" dir="rtl">
+    <div class="tagline">أكبر جيم في الجيزة</div>
+    <span class="en">The Biggest Gym in Giza</span>
+    <div class="branch">فرع العشرين فيصل</div>
+    <span class="en">Al Ashreen Branch, Faisal</span>
+    <div><strong>بواسطة محمد هاني</strong></div>
+    <span class="en">By Mohamed Hany</span>
+  </div>
 </footer>
 
 <script>
@@ -187,6 +189,30 @@ document.getElementById("joinForm").addEventListener("submit", function(e){
   document.getElementById("success").style.display="block";
   this.reset();
 });
+</script>
+<script>
+(function(){
+ const dict={
+ 'Home':'الرئيسية','About':'من نحن','Gallery':'المعرض','Pricing':'الأسعار','Join':'اشترك','Join Now':'اشترك الآن',
+ 'TIME GYM FITNESS CENTER':'تايم جيم - مركز اللياقة البدنية','Train harder, get stronger and become the best version of yourself at TIME GYM.':'تمرّن بقوة أكبر، كن أقوى، وكن أفضل نسخة من نفسك في TIME GYM.',
+ 'Start Your Membership →':'ابدأ اشتراكك ←','More Than Just A Gym':'أكثر من مجرد جيم','Modern Equipment':'أجهزة حديثة','Professional equipment for serious training.':'أجهزة احترافية للتدريب الجاد.',
+ 'Great Environment':'بيئة رائعة','Clean, powerful and motivating atmosphere.':'أجواء نظيفة وقوية ومحفزة.','Cardio Area':'منطقة الكارديو','Everything you need for your conditioning.':'كل ما تحتاجه لرفع لياقتك البدنية.',
+ 'Supportive Community':'مجتمع داعم','Train with people who push you forward.':'تمرّن مع أشخاص يشجعونك على التقدم.','Take A Look Inside':'شاهد الجيم من الداخل',
+ 'Monthly Plan':'الباقة الشهرية','Monthly Membership':'الاشتراك الشهري','Subscribe From The Website':'اشترك من خلال الموقع',
+ 'Submit Membership Request':'إرسال طلب الاشتراك','Online payment is intentionally not connected yet. The form is ready to be linked to a payment gateway later.':'الدفع الإلكتروني غير متصل حاليًا. النموذج جاهز للربط ببوابة دفع لاحقًا.',
+ 'The Biggest Gym in Giza':'أكبر جيم في الجيزة','Al Ashreen Branch, Faisal':'فرع العشرين، فيصل','By Mohamed Hany':'بواسطة محمد هاني','Full Name':'الاسم بالكامل','Phone Number':'رقم الموبايل','Monthly Membership — EGP 650':'الاشتراك الشهري — 650 جنيه','EGP 650 / month':'650 جنيه / شهر'
+ };
+ const rev=Object.fromEntries(Object.entries(dict).map(([e,a])=>[a,e]));
+ const btn=document.createElement('button'); btn.id='langToggle'; btn.textContent='English';
+ btn.style.cssText='position:fixed;top:18px;right:18px;z-index:1000;background:#fff;color:#000;border:0;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(255,255,255,.18)';
+ document.body.appendChild(btn);
+ let ar=false;
+ function walk(node){if(node.nodeType===3){let t=node.nodeValue.trim();if(dict[t]||rev[t]) node.nodeValue=node.nodeValue.replace(t,ar?dict[t]:rev[t]);} else if(node.nodeType===1 && node.id!=='langToggle' && node.tagName!=='SCRIPT' && node.tagName!=='STYLE'){for(const c of node.childNodes) walk(c);}}
+ function apply(){ar=!ar; walk(document.body); document.documentElement.lang=ar?'ar':'en'; document.documentElement.dir=ar?'rtl':'ltr'; document.body.style.direction=ar?'rtl':'ltr'; btn.textContent=ar?'English':'العربية';
+  document.querySelectorAll('input').forEach(i=>{if(i.placeholder==='Full Name'||i.placeholder==='الاسم بالكامل')i.placeholder=ar?'الاسم بالكامل':'Full Name';if(i.placeholder==='Phone Number'||i.placeholder==='رقم الموبايل')i.placeholder=ar?'رقم الموبايل':'Phone Number';});
+ }
+ btn.addEventListener('click',apply);
+})();
 </script>
 </body>
 </html>
