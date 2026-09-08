@@ -157,16 +157,14 @@ footer strong{color:#fff}
 </section>
 
 <section id="join">
-  <div class="section-title"><small>JOIN TIME GYM</small><h2>Subscribe From The Website</h2></div>
-  <div class="form-card">
-    <form id="joinForm">
-      <input id="name" required placeholder="Full Name">
-      <input id="phone" required placeholder="Phone Number" type="tel">
-      <select id="plan"><option>Monthly Membership — EGP 650</option></select>
-      <button class="cta" type="submit">Submit Membership Request</button>
-    </form>
-    <div class="success" id="success" style="display:none">Your membership request has been received.</div>
-    <p class="form-note">بعد الضغط على إرسال طلب الاشتراك، سيتم فتح نموذج Google لتسجيل بياناتك.</p>
+  <div class="section-title"><small>JOIN TIME GYM</small><h2>Complete Your Registration</h2></div>
+  <div class="form-card" style="text-align:center">
+    <p style="color:#bbb;margin-bottom:20px">اضغط على الزر لإدخال بياناتك في نموذج Google، وبعد إتمام البيانات سيتم توجيهك للدفع.</p>
+    <a class="cta" href="#google-registration" onclick="openGoogleRegistration(event)">إدخال البيانات والمتابعة →</a>
+    <div id="google-registration" style="display:none;margin-top:22px">
+      <iframe id="googleFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSdAJHYXMjXXOAu1iTCuOdRDcO16nLVllOYiPuJ8hmyKUPI6dg/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" style="border:0;border-radius:14px;background:#fff">جارٍ تحميل نموذج البيانات…</iframe>
+      <p style="color:#999;font-size:13px;margin-top:10px">بعد إرسال البيانات، سيتم تحويلك تلقائيًا إلى صفحة الدفع.</p>
+    </div>
   </div>
 </section>
 
@@ -184,12 +182,6 @@ footer strong{color:#fff}
 </footer>
 
 <script>
-document.getElementById("joinForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdAJHYXMjXXOAu1iTCuOdRDcO16nLVllOYiPuJ8hmyKUPI6dg/viewform?usp=publish-editor";
-});
-</script>
-<script>
 (function(){
  const dict={
  'Home':'الرئيسية','About':'من نحن','Gallery':'المعرض','Pricing':'الأسعار','Join':'اشترك','Join Now':'اشترك الآن',
@@ -198,7 +190,7 @@ document.getElementById("joinForm").addEventListener("submit", function(e){
  'Great Environment':'بيئة رائعة','Clean, powerful and motivating atmosphere.':'أجواء نظيفة وقوية ومحفزة.','Cardio Area':'منطقة الكارديو','Everything you need for your conditioning.':'كل ما تحتاجه لرفع لياقتك البدنية.',
  'Supportive Community':'مجتمع داعم','Train with people who push you forward.':'تمرّن مع أشخاص يشجعونك على التقدم.','Take A Look Inside':'شاهد الجيم من الداخل',
  'Monthly Plan':'الباقة الشهرية','Monthly Membership':'الاشتراك الشهري','Subscribe From The Website':'اشترك من خلال الموقع',
- 'Submit Membership Request':'إرسال طلب الاشتراك','بعد الضغط على إرسال طلب الاشتراك، سيتم فتح نموذج Google لتسجيل بياناتك.':'الدفع الإلكتروني غير متصل حاليًا. النموذج جاهز للربط ببوابة دفع لاحقًا.',
+ 'Complete Your Registration':'أكمل بيانات الاشتراك','اضغط على الزر لإدخال بياناتك في نموذج Google، وبعد إتمام البيانات سيتم توجيهك للدفع.':'أدخل بياناتك في نموذج Google، وبعد إتمامها سيتم توجيهك للدفع.','إدخال البيانات والمتابعة →':'إدخال البيانات والمتابعة →',
  'The Biggest Gym in Giza':'أكبر جيم في الجيزة','Al Ashreen Branch, Faisal':'فرع العشرين، فيصل','By Mohamed Hany':'بواسطة محمد هاني','Full Name':'الاسم بالكامل','Phone Number':'رقم الموبايل','Monthly Membership — EGP 650':'الاشتراك الشهري — 650 جنيه','EGP 650 / month':'650 جنيه / شهر'
  };
  const rev=Object.fromEntries(Object.entries(dict).map(([e,a])=>[a,e]));
@@ -211,6 +203,29 @@ document.getElementById("joinForm").addEventListener("submit", function(e){
   document.querySelectorAll('input').forEach(i=>{if(i.placeholder==='Full Name'||i.placeholder==='الاسم بالكامل')i.placeholder=ar?'الاسم بالكامل':'Full Name';if(i.placeholder==='Phone Number'||i.placeholder==='رقم الموبايل')i.placeholder=ar?'رقم الموبايل':'Phone Number';});
  }
  btn.addEventListener('click',apply);
+})();
+</script>
+
+<script>
+function openGoogleRegistration(e){
+  e.preventDefault();
+  const box=document.getElementById('google-registration');
+  box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'start'});
+}
+(function(){
+  const frame=document.getElementById('googleFormFrame');
+  if(!frame) return;
+  let loads=0;
+  frame.addEventListener('load',function(){
+    loads++;
+    // Google Forms loads once initially and again after a successful submission.
+    if(loads>=2){
+      setTimeout(function(){
+        window.location.href='https://payment.skywaveads.com/pay/cmtt2xpfu000l2jvk0qdym8va';
+      },700);
+    }
+  });
 })();
 </script>
 </body>
